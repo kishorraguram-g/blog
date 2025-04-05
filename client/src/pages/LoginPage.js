@@ -11,7 +11,7 @@ export default function LoginPage({setProfilename,setUserId}) {
 async function login(ev) {
     ev.preventDefault();
     try {
-      const response = await fetch("https://blog-backend-xul5.onrender.com/login", {
+      const response = await fetch("https://blog-backend-xul5.onrender.com/api/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
