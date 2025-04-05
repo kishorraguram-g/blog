@@ -22,7 +22,7 @@ const CreatePosts = ({ setPosts, profilename, userId }) => {
     console.log("Sending post request with:", postDetails); // Debugging log
   
     try {
-      const response = await fetch("https://blog-backend-xul5.onrender.com/post", {
+      const response = await fetch("https://blog-backend-xul5.onrender.com/api/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
