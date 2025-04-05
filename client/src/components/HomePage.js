@@ -9,7 +9,7 @@ const HomePage = ({ username }) => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const response = await fetch("https://blog-backend-xul5.onrender.com/allposts");
+        const response = await fetch("https://blog-backend-xul5.onrender.com/api/allposts");
         if (response.ok) {
           const data = await response.json();
           setPosts(data);
@@ -26,7 +26,7 @@ const HomePage = ({ username }) => {
   // Handle Like click
   const handleLike = async (postId, title, content, username) => {
     try {
-      const response = await fetch("https://blogapp-server-mocha.vercel.app/like", {
+      const response = await fetch("https://blogapp-server-mocha.vercel.app/api/like", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

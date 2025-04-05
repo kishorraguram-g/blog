@@ -17,7 +17,7 @@ const Mypost = ({ username }) => {
     const fetchData = async () => {
       try {
         // Fetch posts (each post includes its likes count)
-        const postsResponse = await fetch(`https://blog-backend-xul5.onrender.com/posts/${username}`);
+        const postsResponse = await fetch(`https://blog-backend-xul5.onrender.com/api/posts/${username}`);
         const postsData = postsResponse.ok ? await postsResponse.json() : null;
         console.log("Posts data -->", postsData);
         if (postsData) setPosts(postsData);
@@ -52,7 +52,7 @@ const Mypost = ({ username }) => {
     };
   
     try {
-      const response = await fetch("https://blog-backend-xul5.onrender.com/deletepost", {
+      const response = await fetch("https://blog-backend-xul5.onrender.com/api/deletepost", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postToDelete),
@@ -88,7 +88,7 @@ const Mypost = ({ username }) => {
     };
 
     try {
-      const response = await fetch("https://blog-backend-xul5.onrender.com/updatepost", {
+      const response = await fetch("https://blog-backend-xul5.onrender.com/api/updatepost", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedPost),
@@ -114,7 +114,7 @@ const Mypost = ({ username }) => {
   // Handle Like button click
   const handleLike = async (post) => {
     try {
-      const response = await fetch("https://blog-backend-xul5.onrender.com/like", {
+      const response = await fetch("https://blog-backend-xul5.onrender.com/api/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Send title, username, content, and likes increment in the request body
