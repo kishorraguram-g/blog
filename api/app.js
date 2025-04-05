@@ -8,10 +8,15 @@ const app = express();
 
 // CORS Configuration (Allow local & deployed frontend)
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://blog-api-beta-eight.vercel.app"],  
+    origin: [
+      "http://localhost:3000", 
+      "https://blog-api-beta-eight.vercel.app",
+      "https://blog-87zwbgw9g-kishor-ragurams-projects.vercel.app"  // <-- add this
+    ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // Allow cookies & authentication headers
-};
+    credentials: true,
+  };
+  
 
 // Apply CORS Middleware (Only Once)
 app.use(cors(corsOptions));

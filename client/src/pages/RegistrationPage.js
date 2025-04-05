@@ -7,7 +7,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   async function register(ev) {
     ev.preventDefault();
-    const response = await fetch(['https://localhost:/3000','https://blog-backend-xul5.onrender.com'], {
+    const response = await fetch('https://blog-backend-xul5.onrender.com/register', {
       method: 'POST',
       body: JSON.stringify({username,password}),
       headers: {'Content-Type':'application/json'},
