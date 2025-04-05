@@ -7,19 +7,30 @@ dotenv.config();
 const app = express();
 
 // CORS Configuration (Allow local & deployed frontend)
-const corsOptions = {
-    origin: [
-      "http://localhost:3000", 
-      "https://blog-api-beta-eight.vercel.app",
-      "https://blog-87zwbgw9g-kishor-ragurams-projects.vercel.app"  // <-- add this
-    ],
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://blog-api-beta-eight.vercel.app",
+    "https://blog-87zwbgw9g-kishor-ragurams-projects.vercel.app",
+    "https://blog-cb5mc2cqb-kishor-ragurams-projects.vercel.app" // newly deployed frontend
+  ];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   };
   
-
-// Apply CORS Middleware (Only Once)
-app.use(cors(corsOptions));
+  // Apply CORS Middleware (Only Once)
+  app.use(cors(corsOptions));
+  
+  // Handle Preflight
+  app.options("*", cors(corsOptions));
 
 // Explicitly handle Preflight Requests
 app.options("*", cors(corsOptions));
