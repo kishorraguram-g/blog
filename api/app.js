@@ -8,7 +8,7 @@ const app = express();
 
 // CORS Configuration (Allow local & deployed frontend)
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://blogapp-smoky-sigma.vercel.app"],  
+    origin: ["http://localhost:3000", "https://blog-api-beta-eight.vercel.app"],  
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // Allow cookies & authentication headers
 };
