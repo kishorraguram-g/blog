@@ -9,7 +9,7 @@ const HomePage = ({ username }) => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const response = await fetch("http://localhost:4000/allposts");
+        const response = await fetch("https://blog-backend-xul5.onrender.com/allposts");
         if (response.ok) {
           const data = await response.json();
           setPosts(data);
