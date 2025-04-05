@@ -6,41 +6,37 @@ dotenv.config();
 
 const app = express();
 
-// CORS Configuration (Allow local & deployed frontend)
+// ✅ Updated CORS Configuration (Allow local & deployed frontends)
 const allowedOrigins = [
-    "http://localhost:3000",
-    "https://blog-api-beta-eight.vercel.app",
-    "https://blog-87zwbgw9g-kishor-ragurams-projects.vercel.app",
-    "https://blog-cb5mc2cqb-kishor-ragurams-projects.vercel.app" // newly deployed frontend
-  ];
-  
-  const corsOptions = {
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  };
-  
-  // Apply CORS Middleware (Only Once)
-  app.use(cors(corsOptions));
-  
-  // Handle Preflight
-  app.options("*", cors(corsOptions));
+  "http://localhost:3000",
+  "https://blog-api-beta-eight.vercel.app",
+  "https://blog-87zwbgw9g-kishor-ragurams-projects.vercel.app",
+  "https://blog-cb5mc2cqb-kishor-ragurams-projects.vercel.app",
+  "https://blog-fjs8tfhd0-kishor-ragurams-projects.vercel.app" // newly deployed frontend
+];
 
-// Explicitly handle Preflight Requests
-app.options("*", cors(corsOptions));
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
 
+// ✅ Apply CORS Middleware
+app.use(cors(corsOptions));
+
+// Body parser middleware
 app.use(express.json());
 
-// Debugging Middleware (Logs Incoming Requests)
+// 🐞 Debugging Middleware (Logs Incoming Requests)
 app.use((req, res, next) => {
-    console.log(`Incoming request: ${req.method} ${req.url} from ${req.headers.origin}`);
-    next();
+  console.log(`Incoming request: ${req.method} ${req.url} from ${req.headers.origin}`);
+  next();
 });
 
 // Import Routes
